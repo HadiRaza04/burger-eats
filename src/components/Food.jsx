@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import {data} from '../data/data.js';
+import { CartContext } from '../Context/CartContext.jsx';
 function Food() {
+    const cart = useContext(CartContext);
     // console.log(data);
     const [foods, setFoods] = useState(data);
     // Filter types burger/pizza/etc
@@ -22,8 +24,6 @@ function Food() {
   return (
    <div className='max-w-[1640px] m-auto px-4 py-12'>
         <h1 className='text-orange-600 font-bold text-4xl text-center'>Top Rated Menu Items</h1>
-
-
         {/* Filter Row */}
         <div className='flex flex-col lg:flex-row justify-between'>
             
@@ -42,14 +42,13 @@ function Food() {
             <div>
                 <p className='font-bold text-gray-700'>Filter Price</p>
                 <div className='flex justify-between max-w-[390px] w-full'>
-                    <button onClick={() => filterPrice('$')} className='m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white'>$</button>
-                    <button onClick={() => filterPrice('$$')} className='m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white'>$$</button>
-                    <button onClick={() => filterPrice('$$$')} className='m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white'>$$$</button>
-                    <button onClick={() => filterPrice('$$$$')} className='m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white'>$$$$</button>
+                    <button onClick={() => filterPrice(500)} className='m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white'>500</button>
+                    <button onClick={() => filterPrice(1000)} className='m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white'>1000</button>
+                    <button onClick={() => filterPrice(3000)} className='m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white'>3000</button>
+                    <button onClick={() => filterPrice(5000)} className='m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white'>5000</button>
                 </div>
             </div>
         </div>
-
         {/* Display Foods */}
         <div className='grid grid-cols-2 lg:grid-cols-4 gap-6 pt-4'>
             {foods.map((item, index) => (
@@ -63,11 +62,13 @@ function Food() {
                             <span className='bg-orange-500 text-white p-1 rounded-full'>{item.price}</span>
                         </p>
                     </div>
+                    <div className='flex w-full p-2'>
+                        <button className='w-full border-orange-600 hover:bg-orange-600 text-orange-600 hover:text-white' onClick={() => cart.setItems([{title: item.name, price: item.price, id: item.id}, ...cart.items])}>Add to cart</button>
+                    </div>
                 </div>
             ))}
         </div>
    </div>
   )
 }
-
 export default Food
