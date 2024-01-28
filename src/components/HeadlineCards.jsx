@@ -48,5 +48,4 @@ function HeadlineCards() {
     </div>
   )
 }
-
 export default HeadlineCards

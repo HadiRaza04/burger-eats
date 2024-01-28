@@ -5,7 +5,6 @@ import HeadlineCards from './components/HeadlineCards';
 import Food from './components/Food';
 import Category from './components/Category';
 
-
 function App() {
   return (
     <div>
@@ -17,5 +16,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
