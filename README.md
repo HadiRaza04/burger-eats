@@ -1,4 +1,4 @@
-## <a href="https://besteatsburger.netlify.app/">Burger Eats</a>
+## <a href="https://besteatsburgers.netlify.app/">Burger Eats</a>
 
 ![Project ScreenShot](burger-eats.png)
 
