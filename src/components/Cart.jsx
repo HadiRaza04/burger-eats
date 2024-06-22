@@ -1,14 +1,16 @@
 import React, { useContext } from 'react'
 import { CartContext } from '../Context/CartContext'
 import './products.css'
+import { AiOutlineClose } from 'react-icons/ai';
 
 const Cart = () => {
   const cart = useContext(CartContext);
   const total = cart.items.reduce((a, b) => a + b.price, 0);
 
-  const removeFromCart = (itemId) => {
+  const removeFromCart = (e, itemId) => {
     const updatedCart = cart.items.filter(item => item.id !== itemId);
     cart.setItems(updatedCart);
+    e.stopPropagation()
   };
   const cartItems = cart.items.map((item, index) => {
     return (
@@ -18,7 +20,7 @@ const Cart = () => {
         </div>
         <div className='flex flex-row items-center justify-between m-2'>
           <p className='font-bold'>Rs: {item.price}</p>
-          <button type='button' className='w-[90px] h-[40px] m-2 text-white hover:bg-orange-700 p-2 rounded-md border-none bg-orange-600' onClick={() => removeFromCart(item.id)}>Remove</button>
+          <button type='button' className='w-[90px] h-[40px] m-2 text-white hover:bg-orange-700 p-2 rounded-md border-none bg-orange-600' onClick={(e) => removeFromCart(e, item.id)}>Remove</button>
         </div>
       </div>
     )
@@ -28,6 +30,8 @@ const Cart = () => {
         <h1 className='text-4xl '>
           Cart
         </h1>
+        {/* onClick={() => setNav(!nav)}  */}
+        <AiOutlineClose size={ 30 } className='absolute top-4 right-4 cursor-pointer'/>
         <div className='overflow-scroll xyz h-[300px] flex flex-col items-center pt-4'>
             {cartItems}
         </div>

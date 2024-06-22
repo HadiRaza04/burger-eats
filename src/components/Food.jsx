@@ -21,6 +21,10 @@ function Food() {
             })
         );
     };
+    const addedToCart = (item, index) => {
+        cart.setItems([{title: item.name, price: item.price, id: item.id}, ...cart.items])
+        alert("Item added to cart.")
+    }
   return (
    <div className='max-w-[1640px] m-auto px-4 py-12'>
         <h1 className='text-orange-600 font-bold text-4xl text-center'>Top Rated Menu Items</h1>
@@ -63,7 +67,7 @@ function Food() {
                         </p>
                     </div>
                     <div className='flex w-full p-2'>
-                        <button className='w-full h-[40px] text-sm md:text-lg border-orange-600 hover:bg-orange-600 text-orange-600 hover:text-white' onClick={() => cart.setItems([{title: item.name, price: item.price, id: item.id}, ...cart.items])}>Add to cart</button>
+                        <button className='w-full h-[40px] text-sm md:text-lg border-orange-600 hover:bg-orange-600 text-orange-600 hover:text-white' onClick={() => addedToCart(item, index)}>Add to cart</button>
                     </div>
                 </div>
             ))}
